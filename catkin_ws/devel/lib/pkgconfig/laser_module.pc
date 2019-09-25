@@ -1,0 +1,8 @@
+prefix=/home/ty/Desktop/PiXiu/catkin_ws/devel
+
+Name: laser_module
+Description: Description of laser_module
+Version: 0.0.0
+Cflags: 
+Libs: -L/home/ty/Desktop/PiXiu/catkin_ws/devel/lib 
+Requires: 
