@@ -9,7 +9,7 @@ import socket
 from time import sleep
 import vision_detection_pb2 as detection
 
-VISION_PORT = 10005 # Athena vision port
+VISION_PORT = 23333 # Athena vision port
 ROBOT_ID = 3
 
 class VisionModule:
@@ -25,14 +25,15 @@ class VisionModule:
         data, addr = self.sock.recvfrom(65535)
         sleep(0.001) # wait for reading
         return data
-
+        
     def get_info(self, ROBOT_ID):
         data = self.receive()
-        
+        print(data)
         package = detection.Vision_DetectionFrame()
         package.ParseFromString(data)
-        
+        print("package:",package)
         robots = package.robots_blue # repeat
+        print(robots)
         for robot in robots:
             print(robot)
             if robot.robot_id == ROBOT_ID:
@@ -50,9 +51,10 @@ class VisionModule:
         self.ball_info[2] = ball.vel_x/1000.0
         self.ball_info[3] = ball.vel_y/1000.0
         #print('Ball', ball.confidence)
-  
+
 if __name__ == '__main__':
     vision = VisionModule(VISION_PORT)
     vision.get_info(ROBOT_ID)
     print(vision.robot_info)
     print(vision.ball_info)
+
