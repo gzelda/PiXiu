@@ -13,7 +13,7 @@ VISION_PORT = 10005 # Athena vision port
 ROBOT_ID = 3
 
 class VisionModule:
-    def __init__(self, VISION_PORT=VISION_PORT, SENDERIP = '0.0.0.0'):
+    def __init__(self, VISION_PORT=10005, SENDERIP = '0.0.0.0'):
         self.sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
         self.sock.setsockopt(socket.SOL_SOCKET,socket.SO_REUSEADDR,1)
         self.sock.bind((SENDERIP,VISION_PORT))
